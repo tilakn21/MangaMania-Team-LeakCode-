@@ -1,28 +1,16 @@
-# Manga Maestro
+# manga_mania
 
-Welcome to Manga Maestro, a manga hosting website that leverages image recognition AI APIs to automatically detect relevant tags for uploaded manga. This README provides an overview of the project, how to set it up, and key functionalities.
+A new Flutter project.
 
-## Project Overview
+## Getting Started
 
-Manga Maestro is designed to provide a seamless manga reading experience while leveraging AI-based image recognition for content tagging and NSFW content detection. Key functionalities include user authentication, automatic tagging, NSFW content flagging, reading view, and a dynamic landing page.
+This project is a starting point for a Flutter application.
 
-## Features
+A few resources to get you started if this is your first Flutter project:
 
-1. **User Authentication**:
-   - Users can sign up, log in, and upload new manga content.
-   - Authentication ensures a secure environment for manga creators and readers.
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-2. **Automatic Tagging**:
-   - Upon manga upload, AI-based analysis is performed to infer relevant tags automatically.
-   - Tags help in organizing and categorizing manga for easy search and discovery.
-
-3. **NSFW Content Detection**:
-   - The system automatically flags NSFW (Not Safe for Work) content to maintain a safe browsing experience for all users.
-
-4. **Reading View**:
-   - Provides a user-friendly interface for readers to scroll through manga pages within a chapter.
-   - Enables easy navigation between chapters for a seamless reading experience.
-
-5. **Dynamic Landing Page**:
-   - Displays thumbnail images for recently uploaded manga, enticing users to explore new content.
-   - Enhances user engagement and encourages interaction with the platform.
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
