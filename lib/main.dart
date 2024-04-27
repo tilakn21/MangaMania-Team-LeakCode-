@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:manga_mania/pages/auth/auth_page.dart';
+import 'package:manga_mania/pages/auth/login_page.dart';
+import 'package:manga_mania/pages/auth/sign_up_page.dart';
+import 'package:manga_mania/pages/auth/thank_you_page.dart';
 import 'package:manga_mania/pages/home/home_page.dart';
 
-final navigationProvider = ChangeNotifierProvider((ref) => NavigationState());
-
 void main() {
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,24 +22,13 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
         colorScheme: const ColorScheme.dark(),
       ),
-      initialRoute: '/',
+      initialRoute: '/home', // Set the initial route to the home page
       routes: {
-        '/': (context) => const HomePage(),
-        '/login': (context) => SignInPage(),
+        '/home': (context) => HomePage(),
+        '/login': (context) => LoginPage(),
         '/signup': (context) => SignUpPage(),
         '/thankyou': (context) => const ThankYouPage(),
       },
     );
-  }
-}
-
-class NavigationState extends ChangeNotifier {
-  String _currentPage = '/';
-
-  String get currentPage => _currentPage;
-
-  void navigateTo(String route) {
-    _currentPage = route;
-    notifyListeners();
   }
 }

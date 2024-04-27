@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:manga_mania/pages/auth/auth_page.dart';
+import 'package:manga_mania/pages/auth/login_page.dart';
+import 'package:manga_mania/pages/auth/sign_up_page.dart';
+import 'package:manga_mania/pages/auth/gif_widget.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +150,7 @@ class HomePage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SignInPage()),
+                                    builder: (context) => LoginPage()),
                               );
                             },
                             style: ElevatedButton.styleFrom(
