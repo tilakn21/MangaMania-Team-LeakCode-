@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:manga_mania/pages/auth/auth_page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
                 child: Text(
                   'Manga Mania',
                   style: GoogleFonts.mPlus1p(
-                    fontSize: 30, // Increased font size
+                    fontSize: 30,
                     fontWeight: FontWeight.w900,
                     color: Colors.white,
                   ),
@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 24, // Increased font size
+                fontSize: 24,
               ),
             ),
             const SizedBox(width: 16),
@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 24, // Increased font size
+                fontSize: 24,
               ),
             ),
           ],
@@ -79,81 +79,89 @@ class HomePage extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Welcome to Manga Mania!',
-                          style: GoogleFonts.mPlus1p(
-                            fontSize: 72, // Increased font size
-                            fontWeight: FontWeight.w900,
-                            color: Colors.white,
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Welcome to Manga Mania!',
+                            style: GoogleFonts.mPlus1p(
+                              fontSize: 72,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 32), // Increased gap
-                        Text(
-                          'Read and discover the best manga!',
-                          style: GoogleFonts.mPlus1p(
-                            fontSize: 48, // Increased font size
-                            fontWeight: FontWeight.w900,
-                            color: Colors.white,
+                          const SizedBox(height: 32),
+                          Text(
+                            'Read and discover the best manga!',
+                            style: GoogleFonts.mPlus1p(
+                              fontSize: 48,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                    const Spacer(flex: 5),
-                    Column(
-                      children: [
-                        Text(
-                          "Don't have an account yet?",
-                          style: GoogleFonts.mPlus1p(
-                            fontSize: 24, // Increased font size
-                            fontWeight: FontWeight.w200,
-                            color: Colors.white,
+                    const Spacer(),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "Don't have an account yet?",
+                            style: GoogleFonts.mPlus1p(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w200,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 200, // Increased button width
-                          height: 60, // Increased button height
-                          child: FloatingActionButton.extended(
+                          ElevatedButton(
                             onPressed: () {
-                              SignUpPage();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUpPage()),
+                              );
                             },
-                            label: const Text('Sign Up',
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white.withOpacity(0.85),
+                            ),
+                            child: const Text('Sign Up',
                                 style: TextStyle(
-                                  fontSize: 32, // Increased font size
+                                  fontSize: 24,
                                   color: Colors.black,
                                 )),
-                            backgroundColor: Colors.white.withOpacity(0.85),
                           ),
-                        ),
-                        const SizedBox(height: 16), // Increased gap
-                        Text(
-                          "Already registered?",
-                          style: GoogleFonts.mPlus1p(
-                            fontSize: 24, // Increased font size
-                            fontWeight: FontWeight.w200,
-                            color: Colors.white,
+                          const SizedBox(height: 16),
+                          Text(
+                            "Already registered?",
+                            style: GoogleFonts.mPlus1p(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w200,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 200, // Increased button width
-                          height: 60, // Increased button height
-                          child: FloatingActionButton.extended(
+                          ElevatedButton(
                             onPressed: () {
-                              // Add button action here
-                              SignInPage();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignInPage()),
+                              );
                             },
-                            label: const Text('Sign in',
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white.withOpacity(0.85),
+                            ),
+                            child: const Text('Sign in',
                                 style: TextStyle(
-                                  fontSize: 32, // Increased font size
+                                  fontSize: 24,
                                   color: Colors.black,
                                 )),
-                            backgroundColor: Colors.white.withOpacity(0.85),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
