@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:manga_mania/pages/auth/auth_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key});
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
             Container(
               color: Colors.transparent,
               child: Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 child: Text(
                   'Manga Mania',
                   style: GoogleFonts.mPlus1p(
@@ -117,7 +118,7 @@ class HomePage extends StatelessWidget {
                           height: 60, // Increased button height
                           child: FloatingActionButton.extended(
                             onPressed: () {
-                              // Add button action here
+                              SignUpPage();
                             },
                             label: const Text('Sign Up',
                                 style: TextStyle(
@@ -142,6 +143,7 @@ class HomePage extends StatelessWidget {
                           child: FloatingActionButton.extended(
                             onPressed: () {
                               // Add button action here
+                              SignInPage();
                             },
                             label: const Text('Sign in',
                                 style: TextStyle(
