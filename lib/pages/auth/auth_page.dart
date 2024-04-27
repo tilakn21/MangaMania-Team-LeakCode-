@@ -8,7 +8,7 @@ class LoginPage extends StatelessWidget {
         title: const Text('Login'),
       ),
       body: Container(
-        color: Colors.white, // Set background color to white
+        color: Colors.white,
         child: Row(
           children: [
             Expanded(
