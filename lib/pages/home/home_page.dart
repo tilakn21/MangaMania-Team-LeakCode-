@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key});
@@ -8,101 +9,151 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Container(
-          color: Colors.white,
-          child: const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Text(
-              "Manga Mania",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+        elevation: 0,
+        title: Row(
+          children: [
+            Container(
+              color: Colors.transparent,
+              child: Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Text(
+                  'Manga Mania',
+                  style: GoogleFonts.mPlus1p(
+                    fontSize: 30, // Increased font size
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
-          ),
+            const Spacer(),
+            IconButton(
+              onPressed: () {
+                // Handle manga action
+              },
+              icon: const Icon(Icons.menu_book),
+            ),
+            const Text(
+              'Manga',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 24, // Increased font size
+              ),
+            ),
+            const SizedBox(width: 16),
+            IconButton(
+              onPressed: () {
+                // Handle favorite action
+              },
+              icon: const Icon(Icons.favorite_border),
+            ),
+            const Text(
+              'Favorites',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 24, // Increased font size
+              ),
+            ),
+          ],
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              // Navigate to search page
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.favorite),
-            onPressed: () {
-              // Navigate to favorites page
-            },
-          ),
-        ],
       ),
-      body: ListView(
+      body: Stack(
+        fit: StackFit.expand,
         children: [
+          Image.asset(
+            'lib/pages/home/images/guts-manga.gif',
+            fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+          ),
+          Container(
+            color: Colors.black.withOpacity(0.5),
+          ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Welcome to Manga Mania!',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  'Read and discover the best manga!',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Manga Mania',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                Row(
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Welcome to Manga Mania!',
+                          style: GoogleFonts.mPlus1p(
+                            fontSize: 72, // Increased font size
+                            fontWeight: FontWeight.w900,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        'Description goes here...',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
+                        const SizedBox(height: 32), // Increased gap
+                        Text(
+                          'Read and discover the best manga!',
+                          style: GoogleFonts.mPlus1p(
+                            fontSize: 48, // Increased font size
+                            fontWeight: FontWeight.w900,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Add button action here
-                        },
-                        child: Text('Button'),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(width: 16),
-                Image.asset(
-                  'lib/pages/home/images/animated_gif.gif',
-                  width: 200,
-                  height: 200,
-                  fit: BoxFit.cover,
+                      ],
+                    ),
+                    const Spacer(flex: 5),
+                    Column(
+                      children: [
+                        Text(
+                          "Don't have an account yet?",
+                          style: GoogleFonts.mPlus1p(
+                            fontSize: 24, // Increased font size
+                            fontWeight: FontWeight.w200,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 200, // Increased button width
+                          height: 60, // Increased button height
+                          child: FloatingActionButton.extended(
+                            onPressed: () {
+                              // Add button action here
+                            },
+                            label: const Text('Sign Up',
+                                style: TextStyle(
+                                  fontSize: 32, // Increased font size
+                                  color: Colors.black,
+                                )),
+                            backgroundColor: Colors.white.withOpacity(0.85),
+                          ),
+                        ),
+                        const SizedBox(height: 16), // Increased gap
+                        Text(
+                          "Already registered?",
+                          style: GoogleFonts.mPlus1p(
+                            fontSize: 24, // Increased font size
+                            fontWeight: FontWeight.w200,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 200, // Increased button width
+                          height: 60, // Increased button height
+                          child: FloatingActionButton.extended(
+                            onPressed: () {
+                              // Add button action here
+                            },
+                            label: const Text('Sign in',
+                                style: TextStyle(
+                                  fontSize: 32, // Increased font size
+                                  color: Colors.black,
+                                )),
+                            backgroundColor: Colors.white.withOpacity(0.85),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),

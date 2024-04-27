@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manga_mania/pages/auth/auth_page.dart';
 import 'package:manga_mania/pages/home/home_page.dart';
 
 void main() {
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Manga Mania',
       theme: ThemeData(
         useMaterial3: true,
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
         colorScheme: const ColorScheme.dark(),
       ),
-      home: const HomePage(),
+      home: const AuthenticationPage(),
     );
   }
 }
