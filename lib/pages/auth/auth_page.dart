@@ -11,7 +11,7 @@ class AuthenticationPage extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            '',
+            'lib/pages/authentication/images/background.jpg',
             fit: BoxFit.cover,
           ),
           Container(
