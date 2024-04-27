@@ -190,6 +190,7 @@ class SignUpPage extends StatelessWidget {
                             if (value != null) {
                               dobController.text =
                                   '${value.day}/${value.month}/${value.year}';
+                              _showAgeConfirmationDialog(context, value);
                             }
                           });
                         },
@@ -226,6 +227,59 @@ class SignUpPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _showAgeConfirmationDialog(BuildContext context, DateTime selectedDate) {
+    final currentDate = DateTime.now();
+    var age = currentDate.year - selectedDate.year;
+    final monthDiff = currentDate.month - selectedDate.month;
+
+    if (monthDiff < 0 ||
+        (monthDiff == 0 && currentDate.day < selectedDate.day)) {
+      age--;
+    }
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.black, // Set the background color to black
+        title: const Text(
+          'Confirm Age',
+          style: TextStyle(
+              color: Colors.white), // Set the title text color to white
+        ),
+        content: Text(
+          'You are $age years old. Is this correct?',
+          style: const TextStyle(
+              color: Colors.white), // Set the content text color to white
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              // Age is confirmed, proceed with form submission
+              Navigator.of(context).pop();
+            },
+            child: const Text(
+              'Yes',
+              style: TextStyle(
+                  color: Colors.white), // Set the button text color to white
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              // Age is not confirmed, clear the date of birth field
+              dobController.clear();
+              Navigator.of(context).pop();
+            },
+            child: const Text(
+              'No',
+              style: TextStyle(
+                  color: Colors.white), // Set the button text color to white
+            ),
+          ),
+        ],
       ),
     );
   }
