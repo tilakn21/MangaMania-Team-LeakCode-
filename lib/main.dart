@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginPage(),
         '/signup': (context) => SignUpPage(),
         '/mainpage': (context) => MainPage(),
-        '/manga' : (context) => const MangaApiData(),
       },
     );
   }

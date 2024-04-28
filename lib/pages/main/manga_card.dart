@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:syncfusion_flutter_pdf/pdf.dart';
+import 'package:manga_mania/pages/main/main_page.dart';
+import 'package:pdfrx/pdfrx.dart';
 
 class Manga {
   final String id;
@@ -20,19 +21,24 @@ class Manga {
 
 class MangaCard extends StatelessWidget {
   final Manga manga;
-  final VoidCallback onTapPdf;
 
-  MangaCard({
-    required this.manga,
-    required this.onTapPdf,
-  });
+  MangaCard({required this.manga});
+
+  void _openPdf(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PdfViewerPage(pdfUrl: manga.pdfUrl),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
         onTap: () {
-          onTapPdf();
+          _openPdf(context);
         },
         child: Column(
           children: [
@@ -60,18 +66,17 @@ class MangaCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10),
-                  Center(
-                    child: manga.isNSFW
-                        ? Text(
-                            'NSFW',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
-                              color: Colors.red,
-                            ),
-                          )
-                        : Container(), // Empty container if not NSFW
-                  ),
+                  if (manga.isNSFW)
+                    Center(
+                      child: Text(
+                        'NSFW',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),

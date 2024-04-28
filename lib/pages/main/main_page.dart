@@ -1,13 +1,12 @@
 // Manga Model
-// Manga Model
 import 'dart:convert';
 import 'dart:html';
 import 'dart:typed_data';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:manga_mania/pages/main/manga_card.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PdfViewerPage extends StatefulWidget {
   final String pdfUrl;
@@ -19,22 +18,23 @@ class PdfViewerPage extends StatefulWidget {
 }
 
 class _PdfViewerPageState extends State<PdfViewerPage> {
+  late PdfViewerController _pdfViewerController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pdfViewerController = PdfViewerController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('PDF Viewer'),
       ),
-      body: PDFView(
-        filePath: widget.pdfUrl,
-        enableSwipe: true,
-        swipeHorizontal: true,
-        autoSpacing: false,
-        pageFling: true,
-        pageSnap: true,
-        defaultPage: 0,
-        fitPolicy: FitPolicy.BOTH,
-        preventLinkNavigation: false,
+      body: SfPdfViewer.asset(
+        widget.pdfUrl,
+        controller: _pdfViewerController,
       ),
     );
   }
@@ -115,6 +115,15 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
+  void openPdfCustom(String pdfFilePath) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PdfViewerPage(pdfUrl: pdfFilePath),
+      ),
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -156,11 +165,12 @@ class _MainPageState extends State<MainPage> {
             IconButton(
               onPressed: () {
                 // Handle favorite action
+                
               },
               icon: const Icon(Icons.favorite_border),
             ),
             const Text(
-              'Favorites',
+              'ChatBot',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -194,7 +204,7 @@ class _MainPageState extends State<MainPage> {
                 return Card(
                   child: InkWell(
                     onTap: () {
-                      // Handle "Add" card tap
+                      _showAddMangaDialog(context);
                     },
                     child: Center(
                       child: Icon(Icons.add),
@@ -202,12 +212,8 @@ class _MainPageState extends State<MainPage> {
                   ),
                 );
               } else {
-                return MangaCard(
-                  manga: mangas[index],
-                  onTapPdf: () {
-                    _openPdf(context, mangas[index].pdfUrl);
-                  },
-                );
+                // Render the manga cards
+                return MangaCard(manga: mangas[index]);
               }
             },
           ),
