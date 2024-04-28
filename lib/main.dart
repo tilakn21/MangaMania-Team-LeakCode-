@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:manga_mania/pages/auth/login_page.dart';
 import 'package:manga_mania/pages/auth/sign_up_page.dart';
-import 'package:manga_mania/pages/auth/thank_you_page.dart';
 import 'package:manga_mania/pages/home/home_page.dart';
+import 'package:manga_mania/pages/main/main_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Manga Mania',
@@ -22,12 +23,12 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
         colorScheme: const ColorScheme.dark(),
       ),
-      initialRoute: '/home', // Set the initial route to the home page
+      initialRoute: '/home',
       routes: {
-        '/home': (context) => HomePage(),
+        '/home': (context) => const HomePage(),
         '/login': (context) => LoginPage(),
         '/signup': (context) => SignUpPage(),
-        '/thankyou': (context) => const ThankYouPage(),
+        '/mainpage': (context) => MainPage(),
       },
     );
   }
