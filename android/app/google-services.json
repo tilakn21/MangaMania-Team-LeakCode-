@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "362905085279",
+    "project_id": "mangamanialeakcode",
+    "storage_bucket": "mangamanialeakcode.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362905085279:android:e7268f4f6bd4afd40842ea",
+        "android_client_info": {
+          "package_name": "com.example.manga_mania"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB86ReJwb8ib6bWJ_Wc040GG9C3YupJaMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

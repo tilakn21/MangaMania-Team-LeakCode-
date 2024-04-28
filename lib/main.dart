@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:manga_mania/pages/auth/login_page.dart';
 import 'package:manga_mania/pages/auth/sign_up_page.dart';
 import 'package:manga_mania/pages/home/home_page.dart';
 import 'package:manga_mania/pages/main/main_page.dart';
+import 'package:manga_mania/pages/main/manga_api.dart';
 
 void main() {
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const MyApp());
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Manga Mania',
       theme: ThemeData(
         useMaterial3: true,
@@ -29,6 +27,7 @@ class MyApp extends ConsumerWidget {
         '/login': (context) => LoginPage(),
         '/signup': (context) => SignUpPage(),
         '/mainpage': (context) => MainPage(),
+        '/manga' : (context) => const MangaApiData(),
       },
     );
   }

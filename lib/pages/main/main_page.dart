@@ -1,7 +1,44 @@
 // Manga Model
+// Manga Model
+import 'dart:convert';
+import 'dart:html';
+import 'dart:typed_data';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 import 'package:manga_mania/pages/main/manga_card.dart';
+
+class PdfViewerPage extends StatefulWidget {
+  final String pdfUrl;
+
+  PdfViewerPage({required this.pdfUrl});
+
+  @override
+  _PdfViewerPageState createState() => _PdfViewerPageState();
+}
+
+class _PdfViewerPageState extends State<PdfViewerPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('PDF Viewer'),
+      ),
+      body: PDFView(
+        filePath: widget.pdfUrl,
+        enableSwipe: true,
+        swipeHorizontal: true,
+        autoSpacing: false,
+        pageFling: true,
+        pageSnap: true,
+        defaultPage: 0,
+        fitPolicy: FitPolicy.BOTH,
+        preventLinkNavigation: false,
+      ),
+    );
+  }
+}
 
 // Main Page
 class MainPage extends StatefulWidget {
@@ -10,7 +47,73 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final List<Manga> mangas = [];
+  final List<Manga> mangas = [
+    Manga(
+      id: '1',
+      title: 'Naruto',
+      imageUrl:
+          'https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg',
+      isNSFW: false,
+      pdfUrl: "lib/pdfs/testpdf_1.pdf",
+    ),
+    Manga(
+      id: '2',
+      title: 'One Piece',
+      imageUrl:
+          'https://m.media-amazon.com/images/M/MV5BM2YwYTkwNjItNGQzNy00MWE1LWE1M2ItOTMzOGI1OWQyYjA0XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_FMjpg_UX1000_.jpg',
+      isNSFW: false,
+      pdfUrl: "lib/pdfs/testpdf_2.pdf",
+    ),
+    Manga(
+      id: '3',
+      title: 'Attack On Titan',
+      imageUrl:
+          'https://m.media-amazon.com/images/I/71S8O-3xLVL._AC_UF1000,1000_QL80_.jpg',
+      isNSFW: true,
+      pdfUrl: "lib/pdfs/testpdf_3.pdf",
+    ),
+    Manga(
+      id: '4',
+      title: 'Shonen Jump',
+      imageUrl:
+          'https://m.media-amazon.com/images/I/81X5Wy1uMUL._AC_UF1000,1000_QL80_.jpg',
+      isNSFW: true,
+      pdfUrl: "lib/pdfs/testpdf_4.pdf",
+    ),
+    Manga(
+      id: '5',
+      title: 'Vagabond',
+      imageUrl:
+          'https://www.japantimes.co.jp/wp-content/uploads/2017/01/p22-kosaka-vaga-a-20170108.jpg',
+      isNSFW: false,
+      pdfUrl: "lib/pdfs/testpdf_4.pdf",
+    ),
+    Manga(
+      id: '6',
+      title: 'Fullmetal Alchemy',
+      imageUrl:
+          'https://m.media-amazon.com/images/I/61GWN9NPJvL._AC_UF1000,1000_QL80_.jpg',
+      isNSFW: true,
+      pdfUrl: "lib/pdfs/testpdf_4.pdf",
+    ),
+    Manga(
+      id: '7',
+      title: 'Chainsaw Man',
+      imageUrl:
+          'https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974709939/chainsaw-man-vol-1-9781974709939_hr.jpg',
+      isNSFW: true,
+      pdfUrl: "lib/pdfs/testpdf_4.pdf",
+    ),
+  ];
+
+  void _openPdf(BuildContext context, String pdfFilePath) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PdfViewerPage(pdfUrl: pdfFilePath),
+      ),
+    );
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +140,7 @@ class _MainPageState extends State<MainPage> {
             IconButton(
               onPressed: () {
                 // Handle manga action
+                Navigator.pushNamed(context, '/manga');
               },
               icon: const Icon(Icons.menu_book),
             ),
@@ -86,13 +190,25 @@ class _MainPageState extends State<MainPage> {
             itemCount: mangas.length + 1, // Add 1 for the "Add" card
             itemBuilder: (context, index) {
               if (index == mangas.length) {
-                return AddMangaCard(
-                  onTap: () {
-                    _showAddMangaDialog(context);
+                // Render the "Add" card
+                return Card(
+                  child: InkWell(
+                    onTap: () {
+                      // Handle "Add" card tap
+                    },
+                    child: Center(
+                      child: Icon(Icons.add),
+                    ),
+                  ),
+                );
+              } else {
+                return MangaCard(
+                  manga: mangas[index],
+                  onTapPdf: () {
+                    _openPdf(context, mangas[index].pdfUrl);
                   },
                 );
               }
-              return MangaCard(manga: mangas[index]);
             },
           ),
         ],
@@ -106,6 +222,7 @@ class _MainPageState extends State<MainPage> {
       builder: (context) {
         String title = '';
         String imageUrl = '';
+        String pdfUrl = '';
         bool isNSFW = false;
 
         return AlertDialog(
@@ -131,6 +248,15 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               SizedBox(height: 16.0),
+              TextField(
+                onChanged: (value) {
+                  pdfUrl = value;
+                },
+                decoration: InputDecoration(
+                  hintText: 'PDF URL',
+                ),
+              ),
+              SizedBox(height: 16.0),
               CheckboxListTile(
                 title: Text('NSFW'),
                 value: isNSFW ?? false,
@@ -139,12 +265,10 @@ class _MainPageState extends State<MainPage> {
                     isNSFW = value ?? false;
                   });
                 },
-                activeColor:
-                    Colors.black, // Set the color of the checkbox when checked
-                checkColor: Colors.white, // Set the color of the checkmark
+                activeColor: Colors.black,
+                checkColor: Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      4.0), // Add rounded corners to the checkbox
+                  borderRadius: BorderRadius.circular(4.0),
                 ),
               ),
             ],
@@ -158,11 +282,14 @@ class _MainPageState extends State<MainPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                if (title.isNotEmpty && imageUrl.isNotEmpty) {
+                if (title.isNotEmpty &&
+                    imageUrl.isNotEmpty &&
+                    pdfUrl.isNotEmpty) {
                   final newManga = Manga(
                     id: DateTime.now().millisecondsSinceEpoch.toString(),
                     title: title,
                     imageUrl: imageUrl,
+                    pdfUrl: pdfUrl,
                     isNSFW: isNSFW,
                   );
                   setState(() {

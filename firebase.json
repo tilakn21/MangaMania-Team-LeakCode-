@@ -1,0 +1,28 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "mangamanialeakcode",
+          "appId": "1:362905085279:android:e7268f4f6bd4afd40842ea",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "mangamanialeakcode",
+          "configurations": {
+            "android": "1:362905085279:android:e7268f4f6bd4afd40842ea",
+            "ios": "1:362905085279:ios:33a91bcab77ae28a0842ea",
+            "macos": "1:362905085279:ios:33a91bcab77ae28a0842ea",
+            "web": "1:362905085279:web:4291fe014a9c318d0842ea",
+            "windows": "1:362905085279:web:e077089d74bd5bf90842ea"
+          }
+        }
+      }
+    }
+  },
+  "storage": {
+    "rules": "(storage.rules)"
+  }
+}

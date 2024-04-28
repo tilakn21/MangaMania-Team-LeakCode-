@@ -30,35 +30,6 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            IconButton(
-              onPressed: () {
-                // Handle manga action
-              },
-              icon: const Icon(Icons.menu_book),
-            ),
-            const Text(
-              'Manga',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              ),
-            ),
-            const SizedBox(width: 16),
-            IconButton(
-              onPressed: () {
-                // Handle favorite action
-              },
-              icon: const Icon(Icons.favorite_border),
-            ),
-            const Text(
-              'Favorites',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              ),
-            ),
           ],
         ),
       ),
@@ -94,12 +65,12 @@ class HomePage extends StatelessWidget {
                               color: Colors.white,
                             ),
                           ),
-                          const SizedBox(height: 32),
+                          const SizedBox(height: 6),
                           Text(
                             'Read and discover the best manga!',
                             style: GoogleFonts.mPlus1p(
                               fontSize: 48,
-                              fontWeight: FontWeight.w900,
+                              fontWeight: FontWeight.w600,
                               color: Colors.white,
                             ),
                           ),
