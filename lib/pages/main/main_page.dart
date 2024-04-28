@@ -1,13 +1,15 @@
 // Manga Model
-// Manga Model
 import 'dart:convert';
 import 'dart:html';
 import 'dart:typed_data';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:pdfrx/pdfrx.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:manga_mania/pages/main/manga_card.dart';
+
+import 'package:pdfrx/pdfrx.dart';
 
 class PdfViewerPage extends StatefulWidget {
   final String pdfUrl;
@@ -33,7 +35,6 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
         pageFling: true,
         pageSnap: true,
         defaultPage: 0,
-        fitPolicy: FitPolicy.BOTH,
         preventLinkNavigation: false,
       ),
     );
@@ -194,7 +195,7 @@ class _MainPageState extends State<MainPage> {
                 return Card(
                   child: InkWell(
                     onTap: () {
-                      // Handle "Add" card tap
+                      _showAddMangaDialog(context);
                     },
                     child: Center(
                       child: Icon(Icons.add),
@@ -202,12 +203,8 @@ class _MainPageState extends State<MainPage> {
                   ),
                 );
               } else {
-                return MangaCard(
-                  manga: mangas[index],
-                  onTapPdf: () {
-                    _openPdf(context, mangas[index].pdfUrl);
-                  },
-                );
+                // Render the manga cards
+                return MangaCard(manga: mangas[index]);
               }
             },
           ),
