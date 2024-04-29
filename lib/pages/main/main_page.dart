@@ -60,7 +60,7 @@ class _MainPageState extends State<MainPage> {
           'https://m.media-amazon.com/images/I/71S8O-3xLVL._AC_UF1000,1000_QL80_.jpg',
       isNSFW: true,
       pdfUrl: "lib/pdfs/testpdf_3.pdf",
-      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1000486',
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1000935',
     ),
     Manga(
       id: '4',
@@ -69,7 +69,8 @@ class _MainPageState extends State<MainPage> {
           'https://m.media-amazon.com/images/I/81X5Wy1uMUL._AC_UF1000,1000_QL80_.jpg',
       isNSFW: true,
       pdfUrl: "lib/pdfs/testpdf_4.pdf",
-      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1000486',
+      externalLink:
+          'https://drive.google.com/drive/u/2/folders/1tWyIQmQK0c7WxmTWMP10L5fLAjfrgeSL',
     ),
     Manga(
       id: '5',
@@ -249,20 +250,20 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               SizedBox(height: 16.0),
-              CheckboxListTile(
-                title: Text('NSFW'),
-                value: isNSFW ?? false,
-                onChanged: (value) {
-                  setState(() {
-                    isNSFW = value ?? false;
-                  });
-                },
-                activeColor: Colors.black,
-                checkColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4.0),
-                ),
-              ),
+              // CheckboxListTile(
+              //   title: Text('NSFW'),
+              //   value: isNSFW ?? false,
+              //   onChanged: (value) {
+              //     setState(() {
+              //       isNSFW = value ?? false;
+              //     });
+              //   },
+              //   activeColor: Colors.black,
+              //   checkColor: Colors.white,
+              //   shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(4.0),
+              //   ),
+              // ),
             ],
           ),
           actions: [
