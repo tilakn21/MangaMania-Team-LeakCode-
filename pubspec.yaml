@@ -30,6 +30,7 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^24.2.8
   flutter_gemini: ^2.0.3
   url_launcher:
+  webview_flutter_web: ^0.2.2+4
 
 dev_dependencies:
   flutter_test:

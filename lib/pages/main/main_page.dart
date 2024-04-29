@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:manga_mania/pages/main/chatbot.dart';
 import 'package:manga_mania/pages/main/manga_card.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -76,7 +77,7 @@ class _MainPageState extends State<MainPage> {
       id: '5',
       title: 'Vagabond',
       imageUrl:
-          'https://www.japantimes.co.jp/wp-content/uploads/2017/01/p22-kosaka-vaga-a-20170108.jpg',
+          'https://imgs.search.brave.com/qYXTgvoFwAeyXb_xArAMmxOc31fMlXIrto0boUtuDy0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtbmEuc3NsLWlt/YWdlcy1hbWF6b24u/Y29tL2ltYWdlcy9J/LzUxUzZqUkRzbjhM/LmpwZw',
       isNSFW: false,
       pdfUrl: "lib/pdfs/testpdf_4.pdf",
       externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1000486',
@@ -109,6 +110,14 @@ class _MainPageState extends State<MainPage> {
       // Handle the case where the external link cannot be launched
       // You can display an error message or take other appropriate actions
       print('Could not launch $externalLink');
+    }
+  }
+
+  void openCustomLink(String customLink) async {
+    if (await canLaunchUrl(Uri.parse(customLink))) {
+      await launchUrl(Uri.parse(customLink));
+    } else {
+      throw 'Could not launch $customLink';
     }
   }
 
@@ -151,9 +160,7 @@ class _MainPageState extends State<MainPage> {
             ),
             const SizedBox(width: 16),
             IconButton(
-              onPressed: () {
-                // Handle favorite action
-              },
+              onPressed: () {},
               icon: const Icon(Icons.favorite_border),
             ),
             const Text(
@@ -180,7 +187,7 @@ class _MainPageState extends State<MainPage> {
           ),
           // Add the grid view
           GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 5,
               childAspectRatio: 0.7,
             ),
@@ -192,8 +199,10 @@ class _MainPageState extends State<MainPage> {
                   child: InkWell(
                     onTap: () {
                       _showAddMangaDialog(context);
+                      //openCustomLink(
+                      //  "https://www.youtube.com/watch?v=4sCa4ekLB5Q");
                     },
-                    child: Center(
+                    child: const Center(
                       child: Icon(Icons.add),
                     ),
                   ),
@@ -205,6 +214,35 @@ class _MainPageState extends State<MainPage> {
             },
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: () {
+          void openCustomLink(String customLink) async {
+            if (await canLaunchUrl(Uri.parse(customLink))) {
+              await launchUrl(Uri.parse(customLink));
+            } else {
+              throw 'Could not launch $customLink';
+            }
+          }
+
+          openCustomLink(
+              "https://www.anime-planet.com/forum/threads/one-piece.17625/");
+        },
+        tooltip: 'Forums',
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              Icons.forum,
+              color: Colors.black,
+            ), // Discussion icon
+            Text(
+              'Forums',
+              style: TextStyle(color: Colors.black),
+            ), // Text "Forums"
+          ],
+        ),
       ),
     );
   }
@@ -219,7 +257,7 @@ class _MainPageState extends State<MainPage> {
         bool isNSFW = false;
 
         return AlertDialog(
-          title: Text('Add Manga'),
+          title: const Text('Add Manga'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -227,29 +265,29 @@ class _MainPageState extends State<MainPage> {
                 onChanged: (value) {
                   title = value;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Manga Title',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextField(
                 onChanged: (value) {
                   imageUrl = value;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Image URL',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextField(
                 onChanged: (value) {
                   pdfUrl = value;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'PDF URL',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               // CheckboxListTile(
               //   title: Text('NSFW'),
               //   value: isNSFW ?? false,
@@ -271,7 +309,7 @@ class _MainPageState extends State<MainPage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -292,7 +330,7 @@ class _MainPageState extends State<MainPage> {
                   Navigator.of(context).pop();
                 }
               },
-              child: Text('Add'),
+              child: const Text('Add'),
             ),
           ],
         );
