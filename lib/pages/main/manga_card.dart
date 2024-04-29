@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:manga_mania/pages/main/main_page.dart';
 import 'package:pdfrx/pdfrx.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Manga {
   final String id;
@@ -9,6 +10,7 @@ class Manga {
   final String imageUrl;
   final String pdfUrl;
   final bool isNSFW;
+  final String externalLink;
 
   Manga({
     required this.id,
@@ -16,21 +18,24 @@ class Manga {
     required this.imageUrl,
     required this.pdfUrl,
     required this.isNSFW,
+    required this.externalLink,
   });
 }
 
 class MangaCard extends StatelessWidget {
   final Manga manga;
 
-  MangaCard({required this.manga});
+  const MangaCard({super.key, required this.manga});
 
-  void _openPdf(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PdfViewerPage(pdfUrl: manga.pdfUrl),
-      ),
-    );
+  Future<void> _openExternalLink(
+      BuildContext context, String externalLink) async {
+    if (await canLaunchUrl(Uri.parse(externalLink))) {
+      await launchUrl(Uri.parse(externalLink));
+    } else {
+      // Handle the case where the external link cannot be launched
+      // You can display an error message or take other appropriate actions
+      print('Could not launch $externalLink');
+    }
   }
 
   @override
@@ -38,7 +43,7 @@ class MangaCard extends StatelessWidget {
     return Card(
       child: InkWell(
         onTap: () {
-          _openPdf(context);
+          _openExternalLink(context, manga.externalLink);
         },
         child: Column(
           children: [

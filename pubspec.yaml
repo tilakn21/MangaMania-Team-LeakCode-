@@ -29,6 +29,7 @@ dependencies:
   pdfrx: ^1.0.61
   syncfusion_flutter_pdfviewer: ^24.2.8
   flutter_gemini: ^2.0.3
+  url_launcher:
 
 dev_dependencies:
   flutter_test:

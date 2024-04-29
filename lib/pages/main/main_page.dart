@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:manga_mania/pages/main/manga_card.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PdfViewerPage extends StatefulWidget {
   final String pdfUrl;
@@ -18,25 +19,11 @@ class PdfViewerPage extends StatefulWidget {
 }
 
 class _PdfViewerPageState extends State<PdfViewerPage> {
-  late PdfViewerController _pdfViewerController;
-
-  @override
-  void initState() {
-    super.initState();
-    _pdfViewerController = PdfViewerController();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('PDF Viewer'),
-      ),
-      body: SfPdfViewer.asset(
-        widget.pdfUrl,
-        controller: _pdfViewerController,
-      ),
-    );
+    // Remove the entire PdfViewerPage class and its contents
+    // This class is no longer needed since we're not using the PDF viewer
+    return Container(); // Return an empty container
   }
 }
 
@@ -55,6 +42,7 @@ class _MainPageState extends State<MainPage> {
           'https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg',
       isNSFW: false,
       pdfUrl: "lib/pdfs/testpdf_1.pdf",
+      externalLink: "https://mangaplus.shueisha.co.jp/viewer/1000397",
     ),
     Manga(
       id: '2',
@@ -63,6 +51,7 @@ class _MainPageState extends State<MainPage> {
           'https://m.media-amazon.com/images/M/MV5BM2YwYTkwNjItNGQzNy00MWE1LWE1M2ItOTMzOGI1OWQyYjA0XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_FMjpg_UX1000_.jpg',
       isNSFW: false,
       pdfUrl: "lib/pdfs/testpdf_2.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1000486',
     ),
     Manga(
       id: '3',
@@ -71,6 +60,7 @@ class _MainPageState extends State<MainPage> {
           'https://m.media-amazon.com/images/I/71S8O-3xLVL._AC_UF1000,1000_QL80_.jpg',
       isNSFW: true,
       pdfUrl: "lib/pdfs/testpdf_3.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1000486',
     ),
     Manga(
       id: '4',
@@ -79,6 +69,7 @@ class _MainPageState extends State<MainPage> {
           'https://m.media-amazon.com/images/I/81X5Wy1uMUL._AC_UF1000,1000_QL80_.jpg',
       isNSFW: true,
       pdfUrl: "lib/pdfs/testpdf_4.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1000486',
     ),
     Manga(
       id: '5',
@@ -87,6 +78,7 @@ class _MainPageState extends State<MainPage> {
           'https://www.japantimes.co.jp/wp-content/uploads/2017/01/p22-kosaka-vaga-a-20170108.jpg',
       isNSFW: false,
       pdfUrl: "lib/pdfs/testpdf_4.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1000486',
     ),
     Manga(
       id: '6',
@@ -95,6 +87,7 @@ class _MainPageState extends State<MainPage> {
           'https://m.media-amazon.com/images/I/61GWN9NPJvL._AC_UF1000,1000_QL80_.jpg',
       isNSFW: true,
       pdfUrl: "lib/pdfs/testpdf_4.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1000486',
     ),
     Manga(
       id: '7',
@@ -103,25 +96,19 @@ class _MainPageState extends State<MainPage> {
           'https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974709939/chainsaw-man-vol-1-9781974709939_hr.jpg',
       isNSFW: true,
       pdfUrl: "lib/pdfs/testpdf_4.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1000486',
     ),
   ];
 
-  void _openPdf(BuildContext context, String pdfFilePath) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PdfViewerPage(pdfUrl: pdfFilePath),
-      ),
-    );
-  }
-
-  void openPdfCustom(String pdfFilePath) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PdfViewerPage(pdfUrl: pdfFilePath),
-      ),
-    );
+  Future<void> _openExternalLink(String externalLink) async {
+    if (await canLaunchUrl(Uri.parse(externalLink))) {
+      await launchUrl(Uri.parse(externalLink));
+      print('launched');
+    } else {
+      // Handle the case where the external link cannot be launched
+      // You can display an error message or take other appropriate actions
+      print('Could not launch $externalLink');
+    }
   }
 
   Widget build(BuildContext context) {
@@ -165,7 +152,6 @@ class _MainPageState extends State<MainPage> {
             IconButton(
               onPressed: () {
                 // Handle favorite action
-                
               },
               icon: const Icon(Icons.favorite_border),
             ),
@@ -297,6 +283,7 @@ class _MainPageState extends State<MainPage> {
                     imageUrl: imageUrl,
                     pdfUrl: pdfUrl,
                     isNSFW: isNSFW,
+                    externalLink: '',
                   );
                   setState(() {
                     mangas.add(newManga);
