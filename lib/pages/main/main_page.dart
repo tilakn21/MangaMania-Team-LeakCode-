@@ -68,10 +68,10 @@ class _MainPageState extends State<MainPage> {
       title: 'Shonen Jump',
       imageUrl:
           'https://m.media-amazon.com/images/I/81X5Wy1uMUL._AC_UF1000,1000_QL80_.jpg',
-      isNSFW: true,
+      isNSFW: true ,
       pdfUrl: "lib/pdfs/testpdf_4.pdf",
       externalLink:
-          'https://drive.google.com/drive/u/2/folders/1tWyIQmQK0c7WxmTWMP10L5fLAjfrgeSL',
+          'https://mangaplus.shueisha.co.jp/viewer/1021094',
     ),
     Manga(
       id: '5',
@@ -80,7 +80,7 @@ class _MainPageState extends State<MainPage> {
           'https://imgs.search.brave.com/qYXTgvoFwAeyXb_xArAMmxOc31fMlXIrto0boUtuDy0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtbmEuc3NsLWlt/YWdlcy1hbWF6b24u/Y29tL2ltYWdlcy9J/LzUxUzZqUkRzbjhM/LmpwZw',
       isNSFW: false,
       pdfUrl: "lib/pdfs/testpdf_4.pdf",
-      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1000486',
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1020488',
     ),
     Manga(
       id: '6',
@@ -89,7 +89,7 @@ class _MainPageState extends State<MainPage> {
           'https://m.media-amazon.com/images/I/61GWN9NPJvL._AC_UF1000,1000_QL80_.jpg',
       isNSFW: true,
       pdfUrl: "lib/pdfs/testpdf_4.pdf",
-      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1000486',
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1016716',
     ),
     Manga(
       id: '7',
@@ -98,7 +98,97 @@ class _MainPageState extends State<MainPage> {
           'https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974709939/chainsaw-man-vol-1-9781974709939_hr.jpg',
       isNSFW: true,
       pdfUrl: "lib/pdfs/testpdf_4.pdf",
-      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1000486',
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1001249',
+    ),
+    Manga(
+      id: '8',
+      title: 'Super Psychic Policeman Chojo',
+      imageUrl:
+          'https://imgs.search.brave.com/tJRiTuOCBYJt59aNXmj8yr9jr0aL5lNz4Pzk5Of9usA/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/c3VwZXItcHN5Y2hp/Yy1wb2xpY2VtYW4t/Y2hvam8tbWFuZ2Fw/bHVzLXByZXZpZXct/aW1hZ2UtdjAtZGR2/ZnFqNjR4emhjMS5q/cGVnP2F1dG89d2Vi/cCZzPTI4MzUzMDc2/ZDEzOWY5MzI2MTRj/YjkwZjg0OWI1NDE1/OTgyNDA1ZGM',
+      isNSFW: false,
+      pdfUrl: "lib/pdfs/testpdf_4.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1020167',
+    ),
+    Manga(
+      id: '9',
+      title: 'Jujutsu Kaisen',
+      imageUrl:
+          'https://imgs.search.brave.com/Z-jJvl26eT4zSOvObFpzHsWBw92qAfZcau6hlC-uRFM/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMxLnNyY2RuLmNv/bS93b3JkcHJlc3Mv/d3AtY29udGVudC91/cGxvYWRzLzIwMjMv/MDkvanVqdXRzdS1r/YWlzZW4tYW5pbWUt/cG9zdGVyLmpwZw',
+      isNSFW: true,
+      pdfUrl: "lib/pdfs/testpdf_4.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1001279',
+    ),  
+    Manga(
+      id: '10',
+      title: 'My Hero Academia',
+      imageUrl:
+          'https://imgs.search.brave.com/XjNO5WJ0ScfKOuhZDlFidNUpFTAYogbDeoQXa7uYalc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL00v/TVY1QllqVmlPV1kz/WVRRdE5UbGlPQzAw/Tnprd0xUbGxNR010/TWpOaVpUVTBNbVpq/WlRnelhrRXlYa0Zx/Y0dkZVFYVnlPRGd6/TlRRMU5UVUAuanBn',
+      isNSFW: false,
+      pdfUrl: "lib/pdfs/testpdf_4.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1000390',
+    ),
+    Manga(
+      id: '11',
+      title: 'Kagurabachi',
+      imageUrl:
+          'https://imgs.search.brave.com/AU242LM-N0i_P_Qk5D3lgNxcwLdxW1OroAs2pXR1d9I/rs:fit:860:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvZW4vdGh1bWIv/ZC9kYS9LYWd1cmFi/YWNoaV9Wb2x1bWVf/MV9Db3Zlci5qcGcv/NTEycHgtS2FndXJh/YmFjaGlfVm9sdW1l/XzFfQ292ZXIuanBn',
+      isNSFW: false,
+      pdfUrl: "lib/pdfs/testpdf_4.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1018870',
+    ),
+    Manga(
+      id: '12',
+      title: 'Kyokuto Necromance',
+      imageUrl:
+          'https://imgs.search.brave.com/2eIrrh1pKUqcZuO7uVByZr-Cn4iSXt0EVmFo3xen7zw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/a3lva3V0by1uZWNy/b21hbmNlLWJ5LWZ1/c2FpLW5hYmEtam9p/bnMtdGhlLXNob25l/bi1qdW1wLXYwLWJo/azdvbG5nMWJ2YzEu/anBlZz93aWR0aD02/NDAmY3JvcD1zbWFy/dCZhdXRvPXdlYnAm/cz1hZWU4OGFhMjlm/NWE2ZGM2ODY1MDU5/ODlkYTI1NjFlMjYw/M2UzNTM3',
+      isNSFW: false,
+      pdfUrl: "lib/pdfs/testpdf_4.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1021096',
+    ),
+    Manga(
+      id: '13',
+      title: 'Tokyo Underworld',
+      imageUrl:
+          'https://imgs.search.brave.com/Za91q8HF8T13gNRDrGxmuBj4oftqHvrpFEyuJRjZWcQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YXJ0LXRva3lvLXVu/ZGVyd29ybGQtdm9s/dW1lLTEtdjAtbXZ1/a2N6N2FrNDFhMS5q/cGc_YXV0bz13ZWJw/JnM9NGNmZDY2NTg1/NDExYmFkYzc3ZWMx/ZTA5ODI3ZGFmZWU0/MjdiZGExYw',
+      isNSFW: true,
+      pdfUrl: "lib/pdfs/testpdf_4.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1014587',
+    ),
+    Manga(
+      id: '14',
+      title: '2.5 Dimensional Seduction',
+      imageUrl:
+          'https://imgs.search.brave.com/7VIRzHYbF1ur1gGvmT0lmDQ31IltxxRzVsGlQ698KBk/rs:fit:860:0:0/g:ce/aHR0cHM6Ly8yNWRp/bWVuc2lvbmFsc2Vk/dWN0aW9uLm9ubGlu/ZS93cC1jb250ZW50/L3VwbG9hZHMvMjAy/NC8wMi8yLjUtRGlt/ZW5zaW9uYWwtU2Vk/dWN0aW9uLU1hbmdh/LndlYnA',
+      isNSFW: true,
+      pdfUrl: "lib/pdfs/testpdf_4.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1019345',
+    ),
+    Manga(
+      id: '15',
+      title: 'Dogsred',
+      imageUrl:
+          'https://imgs.search.brave.com/ZW8EJzrmdSX1fK4-ZlRyiLgg_MgITZFX8XB35PIO6h8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvZW4vdGh1bWIv/NC80NC9TdXBpbmFt/YXJhZGEuanBnLzUx/MnB4LVN1cGluYW1h/cmFkYS5qcGc',
+      isNSFW: false,
+      pdfUrl: "lib/pdfs/testpdf_4.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1019491',
+    ),
+    Manga(
+      id: '16',
+      title: '【OSHI NO KO】',
+      imageUrl:
+          'https://imgs.search.brave.com/A84cgTXjEb8uJoMbO_L36A7jwQ1FQNMjcb4yzSb6AMI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDEwMDE5/NDA2LmpwZw',
+      isNSFW: true,
+      pdfUrl: "lib/pdfs/testpdf_4.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1013146',
+    ),
+    Manga(
+      id: '17',
+      title: 'Romantic Killer',
+      imageUrl:
+          'https://imgs.search.brave.com/tsMbsWB1ZdMe3onFHLXmsvoDCmv0JP5jYWg_bKCuT88/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtbmEuc3NsLWlt/YWdlcy1hbWF6b24u/Y29tL2ltYWdlcy9J/LzgxNDZ3SktjK3lM/LmpwZw',
+      isNSFW: true,
+      pdfUrl: "lib/pdfs/testpdf_4.pdf",
+      externalLink: 'https://mangaplus.shueisha.co.jp/viewer/1015146',
     ),
   ];
 
@@ -164,7 +254,7 @@ class _MainPageState extends State<MainPage> {
               icon: const Icon(Icons.favorite_border),
             ),
             const Text(
-              'ChatBot',
+              'Liked',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
